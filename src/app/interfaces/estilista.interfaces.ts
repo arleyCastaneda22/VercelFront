@@ -3,6 +3,7 @@ export interface Estilista {
     nombre:           string;
     apellido:         string;
     email:            string;
+    contrasena:       string;
     estado:           boolean;
     telefono:         string;
 }

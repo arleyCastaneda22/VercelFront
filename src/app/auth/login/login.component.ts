@@ -54,6 +54,8 @@ export class LoginComponent implements OnInit {
           Swal.fire('Error', 'El usuario no existe', 'error');
         } else if (error.status === 401) {
           Swal.fire('Error', 'Contraseña incorrecta', 'error');
+        } else if (error.status === 400) {
+          Swal.fire('Error', 'El usuario está inactivo', 'error');
         } else {
           Swal.fire('Error', 'Error en la autenticación', 'error');
         }

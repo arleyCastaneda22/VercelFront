@@ -43,6 +43,18 @@
           </span>
         </div>
         <div class="mb-3">
+          <label for="" class="form-label required">contraseña</label>
+          <input type="password" class="form-control" formControlName="contrasena" placeholder="Ingrese la contraseña"
+            [ngClass]="{'input-error':myForm.get('contrasena')?.invalid && myForm.get('contrasena')?.touched}">
+          <span class="text-danger" *ngIf="myForm.get('contrasena')?.invalid && myForm.get('contrasena')?.touched">
+            la contraseña es requerida
+            <br>
+            <span class="text-danger" *ngIf="myForm.get('contrasena')?.hasError('pattern')">
+            la contraseña debe de tener al menos 6 digitos
+            </span>
+          </span>
+        </div>
+        <div class="mb-3">
           <label for="" class="form-label required">Teléfono</label>
           <input type="text"
           class="form-control"

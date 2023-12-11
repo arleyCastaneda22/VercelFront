@@ -1,4 +1,4 @@
-import { Estilista } from './../../../interfaces/servicios.interfaces';
+import { Estilista } from './../../../interfaces/estilista.interfaces';
 
 import { EstilistaService } from 'src/app/services/estilista.service';
 import { Component, OnInit } from '@angular/core';
@@ -29,6 +29,7 @@ export class CreateEstilistaComponent implements OnInit {
     nombre: ['', [Validators.required, Validators.pattern(/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]+$/), Validators.maxLength(20)]],
     apellido: ['', [Validators.required, Validators.pattern(/^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ]+$/)]],
     email: ['', [Validators.required, Validators.email, this.validarExtensionCom]],
+    contrasena: ['', Validators.required],
 
   });
 
@@ -60,7 +61,14 @@ export class CreateEstilistaComponent implements OnInit {
 
 
   onSave(estilista: Estilista) {
-    if (this.sExiste) {
+    const contrasena = this.myForm.get('contrasena')?.value;
+    if (!this.myForm.valid) {
+      Swal.fire('Error', 'Complete el formulario correctamente', 'error');
+      return;
+    } else if (contrasena.length < 6) {
+      Swal.fire('Error', 'La contraseña debe tener al menos 6 caracteres', 'error');
+      return;
+    }else if (this.sExiste) {
       this.servicioEstilista.actualizarEstilista(this.id, estilista).subscribe((res: Estilista) => {
         Swal.fire({
           icon: 'success',
@@ -72,7 +80,7 @@ export class CreateEstilistaComponent implements OnInit {
       })
     }
     if (this.myForm.invalid) {
-   
+
     }else{
       this.servicioEstilista.createEstilista(estilista).subscribe((res: Estilista) => {
         Swal.fire({

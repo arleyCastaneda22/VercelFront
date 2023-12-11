@@ -25,7 +25,7 @@
               <td>{{i.nombre_servicio | titlecase}}</td>
               <td>{{i.duracion}}</td>
               <td>{{i.precio | currency:'COP':'symbol':'1.2-2'}}</td>
-              <td>{{i.estilista.nombre}} {{i.estilista.apellido}}</td>
+              <td>{{ i.estilista ? i.estilista.nombre : 'N/A' }}</td>
               <td>
                 <a id="link" (click)="cambioEstado(i._id)"
                 [ngClass]="{'estado':i.estado, 'estado-cambiado':!i.estado}">{{i.estado ? 'Activo' : 'Inactivo'}}</a>
@@ -49,4 +49,3 @@
     </div>
   </div>
 
-  

@@ -45,7 +45,7 @@ export class ListEstilistaComponent implements OnInit {
   }
   cambioEstado(id:string){
     this.servicioEstilista.actulizarEstado(id).subscribe(res=>{
-      console.log(res)
+      // console.log(res)
     })
   }
 
